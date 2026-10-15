@@ -1,0 +1,1036 @@
+{
+ "schema": "reve-connect/partner-config/1",
+ "built_at": "2026-10-15T21:30:24+00:00",
+ "partner": {
+  "id": "eddy",
+  "name": "EDDY",
+  "storefront": "https://shopeddy.com",
+  "holdout_share": 0.0,
+  "mount_after": "form[data-type='add-to-cart-form']",
+  "min_buy_to_rent": 3.0
+ },
+ "reve": {
+  "storefront": "https://rentwithreve.com",
+  "myshopify": "maison-reve-iumhc.myshopify.com",
+  "proxy_path": "/apps/supercycle",
+  "storefront_api_version": "2026-07"
+ },
+ "products": {
+  "alex-double-breasted-blazer-dress-ivory-green-applique": {
+   "reve_handle": "alex-blazer-dress-in-ivory-wth-green-applique",
+   "title": "Alex Blazer",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/alex-blazer-dress-in-ivory-wth-green-appliqu_model_front_3x4_1K.jpg?v=1785183426",
+   "retail_cents": 54800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54097020125548,
+     "size": "L",
+     "partner_variant_ids": [
+      47216802136320
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/198679",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693997535596,
+       "price_cents": 8500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/198680",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693997568364,
+       "price_cents": 11000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/198681",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693997633900,
+       "price_cents": 13500
+      }
+     ]
+    }
+   ]
+  },
+  "alexa-top-x-charli-evans-harbor-island-waves-ikat": {
+   "reve_handle": "alexa-top-tasha-short-set",
+   "title": "Alexa & Tasha Set",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/alexa-top-tasha-short-set_model_front_3x4_1K.jpg?v=1786989262",
+   "retail_cents": 42600,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54334188650860,
+     "size": "L",
+     "partner_variant_ids": [
+      48228124885248
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/246896",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693888156012,
+       "price_cents": 6500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/246897",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693888188780,
+       "price_cents": 8500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/246898",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693888221548,
+       "price_cents": 10500
+      }
+     ]
+    }
+   ]
+  },
+  "ariana-dress-raspberry": {
+   "reve_handle": "ariana-dress-in-raspberry",
+   "title": "Ariana Dress in Raspberry",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/ariana-dress-in-raspberry_model_front_3x4_1K.jpg?v=1784665327",
+   "retail_cents": 37800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54064775790956,
+     "size": "M",
+     "partner_variant_ids": [
+      47216809083136
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/191964",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693982855532,
+       "price_cents": 5500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191965",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693982888300,
+       "price_cents": 7500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191966",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693982921068,
+       "price_cents": 9500
+      }
+     ]
+    },
+    {
+     "variant_id": 54195908608364,
+     "size": "L",
+     "partner_variant_ids": [
+      47216809115904
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/191964",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693982855532,
+       "price_cents": 5500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191965",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693982888300,
+       "price_cents": 7500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191966",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693982921068,
+       "price_cents": 9500
+      }
+     ]
+    }
+   ]
+  },
+  "coco-dress-x-charli-evans-pink-sands-gingham": {
+   "reve_handle": "coco-dress",
+   "title": "Coco Dress",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/coco-dress_model_front_3x4_1K.jpg?v=1784665330",
+   "retail_cents": 46800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54064775823724,
+     "size": "L",
+     "partner_variant_ids": [
+      48228126458112
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/191961",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694019981676,
+       "price_cents": 7000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191962",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694020014444,
+       "price_cents": 9500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191963",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694020047212,
+       "price_cents": 11500
+      }
+     ]
+    }
+   ]
+  },
+  "daisy-dress-bubblegum-lagoon": {
+   "reve_handle": "daisy-dress",
+   "title": "Daisy Dress in Bubblegum Lagoon",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/Hot_Pink_Tiered_Fringe_Dress.png?v=1791546707",
+   "retail_cents": 45800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 67657322266988,
+     "size": "M",
+     "partner_variant_ids": [
+      48671818547456
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/280488",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694110880108,
+       "price_cents": 7000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/280489",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694110912876,
+       "price_cents": 9000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/280490",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694110945644,
+       "price_cents": 11500
+      }
+     ]
+    }
+   ]
+  },
+  "daisy-dress-gardenia-floral": {
+   "reve_handle": "daisy-dress-in-gardenia-floral",
+   "title": "Daisy Dress in Gardenia Floral",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/daisy-dress-in-gardenia-floral_model_front_3x4_1K.jpg?v=1786989272",
+   "retail_cents": 59800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 67653370511724,
+     "size": "S",
+     "partner_variant_ids": [
+      48671818809600
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/246899",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693888287084,
+       "price_cents": 9000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/246900",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693888319852,
+       "price_cents": 12000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/246901",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693888352620,
+       "price_cents": 15000
+      }
+     ]
+    },
+    {
+     "variant_id": 54334081204588,
+     "size": "M",
+     "partner_variant_ids": [
+      48671818842368
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/246899",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693888287084,
+       "price_cents": 9000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/246900",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693888319852,
+       "price_cents": 12000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/246901",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693888352620,
+       "price_cents": 15000
+      }
+     ]
+    }
+   ]
+  },
+  "desirae-embroidered-beaded-blazer-light-gold-mini-geometric-floral-embroidery": {
+   "reve_handle": "desirae-embroidered-beaded-blazer-light-gold-mini-geometric-floral-embroidery",
+   "title": "Desirae Blazer",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/desirae-embroidered-beaded-blazer-light-gold-min_model_front_3x4_1K.jpg?v=1785183438",
+   "retail_cents": 44800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54097020387692,
+     "size": "L",
+     "partner_variant_ids": [],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/198019",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694024503660,
+       "price_cents": 6500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/198020",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694024536428,
+       "price_cents": 9000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/198021",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694024569196,
+       "price_cents": 11000
+      }
+     ]
+    }
+   ]
+  },
+  "emily-dress-soft-butter-yellow-1": {
+   "reve_handle": "emily-dress-in-soft-butter-yellow",
+   "title": "Emily Dress",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/emily-dress-in-soft-butter-yellow_model_front_3x4_1K.jpg?v=1784665338",
+   "retail_cents": 52800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54064783098220,
+     "size": "XL",
+     "partner_variant_ids": [
+      48204210405632
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/191958",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693982462316,
+       "price_cents": 8000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191959",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693982560620,
+       "price_cents": 10500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191960",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693982691692,
+       "price_cents": 13000
+      }
+     ]
+    }
+   ]
+  },
+  "gavin-dress-chapel-white-floral": {
+   "reve_handle": "gavin-dress",
+   "title": "Gavin Dress",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/gavin-dress_model_front_3x4_1K.jpg?v=1784665344",
+   "retail_cents": 49800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54064783393132,
+     "size": "S",
+     "partner_variant_ids": [
+      47613098393856
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/191955",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693996650860,
+       "price_cents": 7500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191956",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693996683628,
+       "price_cents": 10500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191957",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693996716396,
+       "price_cents": 12500
+      }
+     ]
+    }
+   ]
+  },
+  "lucca-skirt-forever-toile": {
+   "reve_handle": "lucca-skirt-in-forever-toile",
+   "title": "Lucca Skirt",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/lucca-skirt-in-forever-toile_model_front_3x4_1K.jpg?v=1785183465",
+   "retail_cents": 36800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54097020911980,
+     "size": "S",
+     "partner_variant_ids": [
+      48671822676224
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/198010",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694021456236,
+       "price_cents": 6000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/198011",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694021489004,
+       "price_cents": 7500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/198012",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694021521772,
+       "price_cents": 9000
+      }
+     ]
+    }
+   ]
+  },
+  "lydia-dress-lucca-green": {
+   "reve_handle": "lydia-dress",
+   "title": "Lydia Dress in Lucca Green",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/lydia-dress-lucca-green_model_front_3x4_2K.jpg?v=1791497148",
+   "retail_cents": 26800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 67657322398060,
+     "size": "M",
+     "partner_variant_ids": [
+      48061965795584
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/280485",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694110749036,
+       "price_cents": 5000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/280486",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694110781804,
+       "price_cents": 5500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/280487",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694110814572,
+       "price_cents": 6500
+      }
+     ]
+    }
+   ]
+  },
+  "lydia-dress-magnolia-green-embroidery": {
+   "reve_handle": "lydia-dress-in-magnolia-green-embroidery",
+   "title": "Lydia Dress in Magnolia Green Embroidery",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/lydia-dress-magnolia-green-embroidery_model_front_3x4_2K.jpg?v=1791497154",
+   "retail_cents": 52800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 67657322529132,
+     "size": "S",
+     "partner_variant_ids": [
+      47613099606272
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/280482",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694110617964,
+       "price_cents": 8000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/280483",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694110650732,
+       "price_cents": 10500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/280484",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694110683500,
+       "price_cents": 13000
+      }
+     ]
+    }
+   ]
+  },
+  "lydia-dress-rosa-toscana": {
+   "reve_handle": "lydia-dress-in-rosa-toscana",
+   "title": "Lydia Dress in Rosa Toscana",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/lydia-dress-rosa-toscana_model_front_3x4_2K.jpg?v=1791497159",
+   "retail_cents": 26800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 67657322660204,
+     "size": "M",
+     "partner_variant_ids": [
+      48671823462656
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/280479",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694110486892,
+       "price_cents": 5000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/280480",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694110519660,
+       "price_cents": 5500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/280481",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694110552428,
+       "price_cents": 6500
+      }
+     ]
+    }
+   ]
+  },
+  "mary-cape-chapel-white-floral": {
+   "reve_handle": "mary-cape",
+   "title": "Mary Cape",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/mary-cape_model_front_3x4_1K.jpg?v=1784665353",
+   "retail_cents": 24800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54064783589740,
+     "size": "S",
+     "partner_variant_ids": [
+      47613099835648
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/191975",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694168191340,
+       "price_cents": 4000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191976",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694168322412,
+       "price_cents": 5000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191977",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694168453484,
+       "price_cents": 6500
+      }
+     ]
+    }
+   ]
+  },
+  "mattie-dress-pearly-white-1": {
+   "reve_handle": "otm-exclusive-mattie-dress-in-pearly-white",
+   "title": "Mattie Dress in Pearly White",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/otm-exclusive-mattie-dress-in-pearly-white_model_front_3x4_1K.jpg?v=1784665361",
+   "retail_cents": 44800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54064784114028,
+     "size": "S",
+     "partner_variant_ids": [
+      48204214567168
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/191937",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694019490156,
+       "price_cents": 6500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191938",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694019522924,
+       "price_cents": 9000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/191939",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694019555692,
+       "price_cents": 11000
+      }
+     ]
+    }
+   ]
+  },
+  "quilted-scrap-jacket": {
+   "reve_handle": "quilted-jacket",
+   "title": "Quilted Jacket",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/quilted-jacket_model_front_3x4_1K.jpg?v=1785183467",
+   "retail_cents": 44800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54097020944748,
+     "size": "S",
+     "partner_variant_ids": [
+      46945597915392,
+      48595391971584
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/198007",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693975351660,
+       "price_cents": 6500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/198008",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693975384428,
+       "price_cents": 9000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/198009",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693975417196,
+       "price_cents": 11000
+      }
+     ]
+    }
+   ]
+  },
+  "tasha-short-x-charli-evans-harbor-island-waves-ikat": {
+   "reve_handle": "alexa-top-tasha-short-set",
+   "title": "Alexa & Tasha Set",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/alexa-top-tasha-short-set_model_front_3x4_1K.jpg?v=1786989262",
+   "retail_cents": 42600,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54334188650860,
+     "size": "L",
+     "partner_variant_ids": [
+      48228129734912
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/246896",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693888156012,
+       "price_cents": 6500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/246897",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693888188780,
+       "price_cents": 8500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/246898",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693888221548,
+       "price_cents": 10500
+      }
+     ]
+    }
+   ]
+  },
+  "tillie-dress-magnolia-green-embroidery": {
+   "reve_handle": "tillie-dress",
+   "title": "Tillie Dress",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/tillie-dress_model_front_3x4_1K.jpg?v=1785183472",
+   "retail_cents": 44800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54097021075820,
+     "size": "S",
+     "partner_variant_ids": [
+      47613101211904
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/198001",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693982626156,
+       "price_cents": 6500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/198002",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693982724460,
+       "price_cents": 9000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/198003",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693982789996,
+       "price_cents": 11000
+      }
+     ]
+    },
+    {
+     "variant_id": 54195839369580,
+     "size": "L",
+     "partner_variant_ids": [
+      47613101277440
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/198001",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693982626156,
+       "price_cents": 6500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/198002",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693982724460,
+       "price_cents": 9000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/198003",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693982789996,
+       "price_cents": 11000
+      }
+     ]
+    }
+   ]
+  }
+ }
+}
