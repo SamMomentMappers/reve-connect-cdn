@@ -187,9 +187,24 @@
     return buyCents >= ratio * rentCents;
   }
 
+  // ---------------------------------------------------------------- option B prototype (pay in the panel)
+  // Customer flow only: dates, details, card and confirmation inside the panel. The card step takes
+  // Stripe's published test numbers and nothing else, charges nothing and creates no order. The
+  // contract and validConfig allow it for partner id "demo" only.
+  // Code between the demo-start and demo-end marker lines is stripped from the partner build
+  // (services/catalog/build.py partner_widget); only the shared demo serves the full file.
+
+  var CHECKOUTS = { rentwithreve: true };
+
+  function has(obj, key) { return Object.prototype.hasOwnProperty.call(obj, key); }
+
   function validConfig(cfg) {
-    return !!(cfg && cfg.schema === SCHEMA && cfg.partner && cfg.reve && cfg.products);
+    if (!(cfg && cfg.schema === SCHEMA && cfg.partner && cfg.reve && cfg.products)) return false;
+    var mode = cfg.partner.checkout || "rentwithreve";
+    if (!has(CHECKOUTS, mode)) return false;
+    return mode !== "in_panel_demo" || cfg.partner.id === "demo";
   }
+
 
   // ---------------------------------------------------------------- browser side
 
@@ -333,6 +348,7 @@
     ".fine{font-size:11.5px;color:var(--muted);text-align:center;margin:10px 0 0}",
     ".err{background:#fbe9e7;color:#7a2e22;padding:10px 12px;font-size:12.5px;margin:0 0 12px}",
     ".skel{height:250px;display:grid;place-items:center;color:var(--muted);font-size:12px}",
+    // option B prototype: steps, forms, confirmation
     "@media (prefers-reduced-motion:reduce){.sheet,.scrim{transition:none}.enter .sec{animation:none}}"
   ].join("\n");
 
@@ -340,7 +356,11 @@
     this.cfg = cfg; this.handle = handle; this.product = product; this.form = form;
     this.unit = 0; this.period = 0; this.start = null; this.month = null;
     this.timelines = {}; this.error = null; this.busy = false; this.lastFocus = null;
+    this.step = "dates"; this.focusKey = null;
   }
+
+  Widget.prototype.inPanel = function () { return this.cfg.partner.checkout === "in_panel_demo"; };
+
 
   Widget.prototype.reve = function (path) { return this.cfg.reve.storefront.replace(/\/$/, "") + path; };
 
@@ -387,7 +407,7 @@
   };
 
   Widget.prototype.trapTab = function (e) {
-    var f = this.root.querySelectorAll("button:not([disabled])");
+    var f = this.root.querySelectorAll("button:not([disabled]), input:not([disabled]), select:not([disabled])");
     if (!f.length) return;
     var first = f[0], last = f[f.length - 1], active = this.root.activeElement;
     if (e.shiftKey && active === first) { last.focus(); e.preventDefault(); }
@@ -400,6 +420,8 @@
     this.lastFocus = document.activeElement;
     this.syncUnitFromPage();
     this.error = null;
+    if (this.step === "done") this.start = null;
+    if (!this.start) this.step = "dates";  // a size change on the partner page clears the dates
     this.prevOverflow = document.documentElement.style.overflow;
     document.documentElement.style.overflow = "hidden";
     this.render();
@@ -438,8 +460,72 @@
       .then(function () { self.render(); });
   };
 
+  function thumb(src, w) { return src + (src.indexOf("?") === -1 ? "?" : "&") + "width=" + w; }
+  function kv(k, v, cls) { return [el("span", { class: "k", text: k }), el("span", { class: "v" + (cls ? " " + cls : ""), text: v })]; }
+
+  /* One sheet per step. Option A only ever shows "dates"; option B walks dates -> details -> pay -> done. */
   Widget.prototype.render = function () {
     if (!this.isOpen) return;
+    var self = this, step = this.inPanel() ? this.step : "dates";
+    var part = step === "details" ? this.detailsStep() : step === "pay" ? this.payStep()
+      : step === "done" ? this.doneStep() : this.datesStep();
+    var sheet = el("div", { class: "sheet", role: "dialog", "aria-modal": "true", "aria-labelledby": "rc-title", tabindex: "-1" }, [
+      this.head(step),
+      el("div", { class: "body" }, [this.error ? el("div", { class: "err", role: "alert", text: this.error }) : null].concat(part.body)),
+      el("div", { class: "foot" }, part.foot)
+    ]);
+    var scrim = el("div", { class: "scrim", onclick: function () { self.close(); } });
+    var wasOpen = this.wrap.classList.contains("open");
+    var focusedKey = this.root.activeElement && this.root.activeElement.getAttribute("data-k");
+    var oldBody = this.root.querySelector(".body");
+    var keepScroll = oldBody && this.renderedStep === step ? oldBody.scrollTop : 0;  // re-render in place, not a jump to the top
+    this.wrap.innerHTML = "";
+    this.wrap.appendChild(scrim);
+    this.wrap.appendChild(sheet);
+    this.renderedStep = step;
+    if (keepScroll) sheet.querySelector(".body").scrollTop = keepScroll;
+    var want = this.focusKey && this.root.querySelector("[data-k='" + this.focusKey + "']");
+    this.focusKey = null;
+    if (want) { want.focus(); return; }
+    if (wasOpen) {
+      var again = focusedKey && this.root.querySelector("[data-k='" + focusedKey + "']");
+      (again && !again.disabled ? again : sheet).focus({ preventScroll: true });
+    }
+  };
+
+  Widget.prototype.head = function (step) {
+    var self = this, name = this.cfg.partner.name, steps = null;
+    if (this.inPanel() && step !== "done") {
+      var at = ["dates", "details", "pay"].indexOf(step);
+      steps = el("ol", { class: "steps", "aria-label": "Steps" }, ["Dates", "Details", "Payment"].map(function (t, i) {
+        return el("li", { class: i < at ? "past" : null, "aria-current": i === at ? "step" : null, text: t });
+      }));
+    }
+    return el("div", { class: "head" }, [
+      el("div", { class: "kicker", text: name + " × Rêve" }),
+      el("h2", { id: "rc-title" }, ["Rent it through ", el("em", { text: "RÊVE" })]),
+      el("p", { class: "lede", text: "Rêve ships it to you, picks it up and has it cleaned. " +
+        (this.inPanel() ? "You pay here, without leaving " + name + "." : "You check out on rentwithreve.com.") }),
+      steps,
+      el("button", { class: "x", type: "button", "data-k": "x", "aria-label": "Close", onclick: function () { self.close(); } }, ["×"])
+    ]);
+  };
+
+  Widget.prototype.totals = function () {
+    var fees = this.product.fixed_fees, rent = this.current().period.price_cents;
+    var sum = fees.reduce(function (a, f) { return a + f.price_cents; }, 0);
+    return { rent: rent, fees: sum, free: fees.every(function (f) { return f.price_cents === 0; }), total: rent + sum };
+  };
+
+  Widget.prototype.costRows = function () {
+    var t = this.totals();
+    return [].concat(
+      kv(this.current().period.label + " rental", formatMoney(t.rent)),
+      kv(t.free ? "Shipping and cleaning" : "Fees", t.free ? "Included" : formatMoney(t.fees)),
+      kv("Total", formatMoney(t.total), "tot"));
+  };
+
+  Widget.prototype.datesStep = function () {
     var self = this, p = this.product, cur = this.current(), u = cur.unit, per = cur.period;
     var tl = this.timelines[u.variant_id] || { loading: true };
     var starts = tl.occupancy ? bookableStarts(tl.occupancy, per.nights) : [];
@@ -464,55 +550,35 @@
     else if (!starts.length) cal = el("div", { class: "cal skel", text: "This size is booked for the next few months." });
     else cal = this.calendar(starts, per.nights);
 
-    var summary = null;
-    if (this.start) {
-      var end = addDays(this.start, per.nights);
-      var free = p.fixed_fees.every(function (f) { return f.price_cents === 0; });
-      var fees = p.fixed_fees.reduce(function (a, f) { return a + f.price_cents; }, 0);
-      summary = el("div", { class: "sum sec" }, [
-        el("span", { class: "k", text: "Arrives by" }), el("span", { class: "v", text: formatDay(this.start) }),
-        el("span", { class: "k", text: "Send it back" }), el("span", { class: "v", text: formatDay(end) }),
-        el("span", { class: "k", text: per.label + " rental" }), el("span", { class: "v", text: formatMoney(per.price_cents) }),
-        el("span", { class: "k", text: free ? "Shipping and cleaning" : "Fees" }), el("span", { class: "v", text: free ? "Included" : formatMoney(fees) }),
-        el("span", { class: "k", text: "Total" }), el("span", { class: "v tot", text: formatMoney(per.price_cents + fees) })
-      ]);
-    }
+    var summary = this.start ? el("div", { class: "sum sec" }, [].concat(
+      kv("Arrives by", formatDay(this.start)), kv("Send it back", formatDay(addDays(this.start, per.nights))), this.costRows())) : null;
 
-    var sheet = el("div", { class: "sheet", role: "dialog", "aria-modal": "true", "aria-labelledby": "rc-title", tabindex: "-1" }, [
-      el("div", { class: "head" }, [
-        el("div", { class: "kicker", text: this.cfg.partner.name + " × Rêve" }),
-        el("h2", { id: "rc-title" }, ["Rent it through ", el("em", { text: "RÊVE" })]),
-        el("p", { class: "lede", text: "Rêve ships it to you, picks it up and has it cleaned. You check out on rentwithreve.com." }),
-        el("button", { class: "x", type: "button", "data-k": "x", "aria-label": "Close", onclick: function () { self.close(); } }, ["×"])
-      ]),
-      el("div", { class: "body" }, [
-        this.error ? el("div", { class: "err", role: "alert", text: this.error }) : null,
+    var name = this.cfg.partner.name, go, fine;
+    if (this.inPanel()) {
+      go = el("button", { class: "go", type: "button", "data-k": "go", disabled: !this.start, onclick: function () { self.go("details"); } },
+        ["Continue", el("span", { "aria-hidden": "true", text: "→" })]);
+      fine = "You pay on this page. " + name + " gets credit for your rental.";
+    } else {
+      go = el("button", { class: "go", type: "button", "data-k": "go", disabled: !this.start || this.busy, onclick: function () { self.checkout(); } },
+        [this.busy ? "Opening Rêve checkout…" : "Continue to checkout", el("span", { "aria-hidden": "true", text: "↗" })]);
+      fine = "Opens rentwithreve.com in a new tab. " + name + " gets credit for your rental.";
+    }
+    return {
+      body: [
         el("div", { class: "piece" }, [
-          p.image ? el("img", { src: p.image + (p.image.indexOf("?") === -1 ? "?" : "&") + "width=160", alt: "", loading: "lazy" }) : null,
+          p.image ? el("img", { src: thumb(p.image, 160), alt: "", loading: "lazy" }) : null,
           el("div", {}, [el("div", { class: "t", text: p.title }), el("div", { class: "s", text: "Rêve's piece, size " + u.size })])
         ]),
         el("div", { class: "sec" }, [el("div", { class: "lbl" }, [el("span", { text: "Size" })]), el("div", { class: "chips" }, sizeChips), sizeHint]),
         el("div", { class: "sec" }, [el("div", { class: "lbl" }, [el("span", { text: "How long" })]), el("div", { class: "chips" }, lengthChips)]),
         el("div", { class: "sec" }, [el("div", { class: "lbl" }, [el("span", { text: "Arrives by" }), el("span", { text: per.label })]), cal]),
         summary
-      ]),
-      el("div", { class: "foot" }, [
-        el("button", { class: "go", type: "button", "data-k": "go", disabled: !this.start || this.busy, onclick: function () { self.checkout(); } },
-          [this.busy ? "Opening Rêve checkout…" : "Continue to checkout", el("span", { "aria-hidden": "true", text: "↗" })]),
-        el("p", { class: "fine", text: "Opens rentwithreve.com in a new tab. " + this.cfg.partner.name + " gets credit for your rental." })
-      ])
-    ]);
-    var scrim = el("div", { class: "scrim", onclick: function () { self.close(); } });
-    var wasOpen = this.wrap.classList.contains("open");
-    var focusedKey = this.root.activeElement && this.root.activeElement.getAttribute("data-k");
-    this.wrap.innerHTML = "";
-    this.wrap.appendChild(scrim);
-    this.wrap.appendChild(sheet);
-    if (wasOpen) {
-      var again = focusedKey && this.root.querySelector("[data-k='" + focusedKey + "']");
-      (again || sheet).focus({ preventScroll: true });
-    }
+      ],
+      foot: [go, el("p", { class: "fine", text: fine })]
+    };
   };
+
+  // ---------------------------------------------------------------- option B prototype steps
 
   Widget.prototype.calendar = function (starts, nights) {
     var self = this, ok = {};
@@ -663,6 +729,6 @@
     bookableStarts: bookableStarts, monthGrid: monthGrid, unitForPartnerVariant: unitForPartnerVariant,
     fromPrice: fromPrice, formatMoney: formatMoney, formatDay: formatDay, formatPropDate: formatPropDate,
     intentBody: intentBody, splitIntent: splitIntent, cartInput: cartInput, cartFormFields: cartFormFields,
-    bucket: bucket, worthRenting: worthRenting, validConfig: validConfig, boot: boot
+    bucket: bucket, worthRenting: worthRenting, validConfig: validConfig, boot: boot,
   };
 });
