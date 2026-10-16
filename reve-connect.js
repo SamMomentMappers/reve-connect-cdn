@@ -95,6 +95,14 @@
     return min;
   }
 
+  /* The small line under the button: the rental lengths, plus what the price covers when there are no fees. */
+  function buttonNote(product) {
+    var days = product.units[0].periods.map(function (x) { return x.days; });
+    var free = product.fixed_fees.every(function (f) { return f.price_cents === 0; });
+    var lengths = days.join(", ").replace(/, (\d+)$/, " or $1") + (days.length === 1 && days[0] === 1 ? " day" : " days");
+    return lengths + (free ? " · shipping and cleaning included" : "");
+  }
+
   function formatMoney(cents) {
     var whole = cents % 100 === 0;
     return "$" + (cents / 100).toLocaleString("en-US", {
@@ -257,22 +265,24 @@
   }
 
   var CSS_BUTTON = [
-    ":host{display:block;margin:14px 0 0;font:inherit;color:inherit;-webkit-font-smoothing:antialiased}",
+    ":host{display:block;margin:12px 0 0;font:inherit;color:inherit;-webkit-font-smoothing:antialiased}",
     ".rc{--ink:#2b2326;--rose:#83545f;--blush:#f3e3e3;--sage:#98b3a6;--cream:#f4f0ec;",
     "  --serif:'Cormorant Garamond',Cormorant,'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif}",
-    ".eyebrow{display:block;font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.72;margin:0 0 8px}",
-    "button.cta{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:14px;width:100%;cursor:pointer;",
-    "  padding:12px 16px;background:var(--blush);color:var(--ink);border:1px solid rgba(131,84,95,.22);",
-    "  transition:background .2s ease,border-color .2s ease,transform .2s ease}",
-    "button.cta:hover{background:#efd9da;border-color:rgba(131,84,95,.45)}",
+    // quieter than the partner's Add to cart: one line, hairline border, the blush fill only on hover
+    "button.cta{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:8px;width:100%;cursor:pointer;",
+    "  padding:10px 14px;background:transparent;color:var(--ink);border:1px solid rgba(43,35,38,.18);",
+    "  font-size:13px;line-height:1.2;transition:background .2s ease,border-color .2s ease,transform .2s ease}",
+    "button.cta:hover{background:var(--blush);border-color:rgba(131,84,95,.4)}",
     "button.cta:active{transform:translateY(1px)}",
     "button.cta:focus-visible{outline:2px solid var(--rose);outline-offset:3px}",
-    ".mark{font-family:var(--serif);font-size:22px;letter-spacing:.18em;line-height:1;color:var(--rose);font-weight:500}",
-    ".price{margin-left:auto;font-size:13px;letter-spacing:.02em;text-align:right;line-height:1.35}",
-    ".price b{font-weight:600}",
-    ".arrow{font-size:18px;color:var(--rose);transition:transform .25s ease}",
-    "button.cta:hover .arrow{transform:translateX(3px)}",
-    ".note{margin:8px 0 0;font-size:12px;opacity:.7}",
+    ".lead{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.78}",
+    ".mark{flex:none;font-family:var(--serif);font-size:16px;letter-spacing:.16em;line-height:1;color:var(--rose);font-weight:500}",
+    ".price{flex:none;margin-left:auto;white-space:nowrap}",
+    ".arrow{flex:none;color:var(--rose);transition:transform .25s ease}",
+    "button.cta:hover .arrow{transform:translateX(2px)}",
+    ".note{margin:6px 0 0;font-size:11.5px;opacity:.62}",
+    // a narrow buy column keeps the mark and the price; the aria-label keeps the full name
+    ".narrow .lead{display:none}",
     "@media (prefers-reduced-motion:reduce){*{transition:none!important}}"
   ].join("\n");
 
@@ -377,18 +387,28 @@
     var host = placeholder || el("div", { "data-reve-connect-host": "" });
     if (!placeholder) this.form.insertAdjacentElement("afterend", host);
     var shadow = host.attachShadow({ mode: "open" });
-    var free = p.fixed_fees.every(function (f) { return f.price_cents === 0; });
-    var lengths = p.units[0].periods.map(function (x) { return x.days; }).join(", ").replace(/, (\d+)$/, " or $1");
-    shadow.appendChild(el("style", { text: CSS_BUTTON }));
-    shadow.appendChild(el("div", { class: "rc" }, [
-      el("span", { class: "eyebrow", text: "Rent this item through" }),
-      el("button", { class: "cta", type: "button", "aria-haspopup": "dialog", onclick: function () { self.open(); } }, [
+    var from = "from " + formatMoney(fromPrice(p));
+    var rc = el("div", { class: "rc" }, [
+      el("button", { class: "cta", type: "button", "aria-haspopup": "dialog", "aria-label": "Rent it through Rêve " + from,
+                     onclick: function () { self.open(); } }, [
+        el("span", { class: "lead", text: "Rent it through" }),
         el("span", { class: "mark", text: "RÊVE" }),
-        el("span", { class: "arrow", "aria-hidden": "true", text: "→" }),
-        el("span", { class: "price" }, [el("b", { text: "from " + formatMoney(fromPrice(p)) }), el("br"), lengths + " days"])
+        el("span", { class: "price", text: from }),
+        el("span", { class: "arrow", "aria-hidden": "true", text: "→" })
       ]),
-      free ? el("p", { class: "note", text: "Shipping and cleaning included. Rêve handles the return." }) : null
-    ]));
+      el("p", { class: "note", text: buttonNote(p) })
+    ]);
+    shadow.appendChild(el("style", { text: CSS_BUTTON }));
+    shadow.appendChild(rc);
+    // drop "Rent it through" whole when the partner's font and column can't fit it (it shrinks first).
+    // Not a container query: containment would collapse the button in a theme that sizes it to its content.
+    var lead = rc.querySelector(".lead");
+    if (typeof ResizeObserver === "function") {
+      new ResizeObserver(function () {
+        rc.classList.remove("narrow");
+        if (lead.scrollWidth > lead.clientWidth) rc.classList.add("narrow");
+      }).observe(host);
+    }
     emit("reve_connect_view", { partner: this.cfg.partner.id, product: this.handle });
   };
 
@@ -732,7 +752,7 @@
     VERSION: VERSION, SCHEMA: SCHEMA, CART_CREATE: CART_CREATE,
     productHandleFromPath: productHandleFromPath, addDays: addDays, isBookable: isBookable,
     bookableStarts: bookableStarts, monthGrid: monthGrid, unitForPartnerVariant: unitForPartnerVariant,
-    fromPrice: fromPrice, formatMoney: formatMoney, formatDay: formatDay, formatPropDate: formatPropDate,
+    fromPrice: fromPrice, buttonNote: buttonNote, formatMoney: formatMoney, formatDay: formatDay, formatPropDate: formatPropDate,
     intentBody: intentBody, splitIntent: splitIntent, cartInput: cartInput, cartFormFields: cartFormFields,
     bucket: bucket, worthRenting: worthRenting, validConfig: validConfig, boot: boot,
   };
