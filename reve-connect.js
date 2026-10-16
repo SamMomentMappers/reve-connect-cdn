@@ -417,6 +417,7 @@
 
   Widget.prototype.open = function () {
     if (!this.root) this.mountPanel();
+    clearTimeout(this.closeTimer);
     this.isOpen = true;
     this.lastFocus = document.activeElement;
     this.syncUnitFromPage();
@@ -441,7 +442,10 @@
     this.wrap.classList.remove("open");
     document.documentElement.style.overflow = this.prevOverflow || "";
     var self = this;
-    setTimeout(function () { if (!self.wrap.classList.contains("open")) self.wrap.innerHTML = ""; }, 340);
+    // empty the panel once it has slid away, unless it was reopened meanwhile (isOpen is set at once;
+    // the "open" class only lands a frame later, so checking the class blanked a quick reopen)
+    clearTimeout(this.closeTimer);
+    this.closeTimer = setTimeout(function () { if (!self.isOpen) self.wrap.innerHTML = ""; }, 340);
     if (this.lastFocus && this.lastFocus.focus) this.lastFocus.focus();
   };
 
