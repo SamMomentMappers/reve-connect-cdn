@@ -187,10 +187,11 @@
     return buyCents >= ratio * rentCents;
   }
 
-  // ---------------------------------------------------------------- option B prototype (pay in the panel)
-  // Customer flow only: dates, details, card and confirmation inside the panel. The card step takes
-  // Stripe's published test numbers and nothing else, charges nothing and creates no order. The
-  // contract and validConfig allow it for partner id "demo" only.
+  // ---------------------------------------------------------------- option B3, future state (rent in the partner's cart)
+  // Customer flow only: the rental goes into the partner's own bag and is paid at the partner's own
+  // Shopify checkout; Rêve ships, collects and cleans it. In the demo the bag and checkout are
+  // illustrations, the dates are checked live, and nothing is ordered or charged. The contract and
+  // validConfig allow it for partner id "demo" only.
   // Code between the demo-start and demo-end marker lines is stripped from the partner build
   // (services/catalog/build.py partner_widget); only the shared demo serves the full file.
 
@@ -202,7 +203,7 @@
     if (!(cfg && cfg.schema === SCHEMA && cfg.partner && cfg.reve && cfg.products)) return false;
     var mode = cfg.partner.checkout || "rentwithreve";
     if (!has(CHECKOUTS, mode)) return false;
-    return mode !== "in_panel_demo" || cfg.partner.id === "demo";
+    return mode === "rentwithreve" || cfg.partner.id === "demo";  // every other mode is demo-only
   }
 
 
@@ -348,7 +349,7 @@
     ".fine{font-size:11.5px;color:var(--muted);text-align:center;margin:10px 0 0}",
     ".err{background:#fbe9e7;color:#7a2e22;padding:10px 12px;font-size:12.5px;margin:0 0 12px}",
     ".skel{height:250px;display:grid;place-items:center;color:var(--muted);font-size:12px}",
-    // option B prototype: steps, forms, confirmation
+    // option B3 future state: steps, bag, checkout preview, confirmation
     "@media (prefers-reduced-motion:reduce){.sheet,.scrim{transition:none}.enter .sec{animation:none}}"
   ].join("\n");
 
@@ -359,7 +360,7 @@
     this.step = "dates"; this.focusKey = null;
   }
 
-  Widget.prototype.inPanel = function () { return this.cfg.partner.checkout === "in_panel_demo"; };
+  Widget.prototype.inPartnerCart = function () { return this.cfg.partner.checkout === "partner_cart_demo"; };
 
 
   Widget.prototype.reve = function (path) { return this.cfg.reve.storefront.replace(/\/$/, "") + path; };
@@ -420,8 +421,8 @@
     this.lastFocus = document.activeElement;
     this.syncUnitFromPage();
     this.error = null;
-    if (this.step === "done") this.start = null;
-    if (!this.start) this.step = "dates";  // a size change on the partner page clears the dates
+    if (this.step === "done") { this.step = "dates"; this.start = null; }
+    if (!this.start && this.step !== "bag" && this.step !== "checkout") this.step = "dates";  // a size change clears the dates
     this.prevOverflow = document.documentElement.style.overflow;
     document.documentElement.style.overflow = "hidden";
     this.render();
@@ -463,11 +464,11 @@
   function thumb(src, w) { return src + (src.indexOf("?") === -1 ? "?" : "&") + "width=" + w; }
   function kv(k, v, cls) { return [el("span", { class: "k", text: k }), el("span", { class: "v" + (cls ? " " + cls : ""), text: v })]; }
 
-  /* One sheet per step. Option A only ever shows "dates"; option B walks dates -> details -> pay -> done. */
+  /* One sheet per step. Option A only ever shows "dates"; option B3 walks dates -> bag -> checkout -> done. */
   Widget.prototype.render = function () {
     if (!this.isOpen) return;
-    var self = this, step = this.inPanel() ? this.step : "dates";
-    var part = step === "details" ? this.detailsStep() : step === "pay" ? this.payStep()
+    var self = this, step = this.inPartnerCart() ? this.step : "dates";
+    var part = step === "bag" ? this.bagStep() : step === "checkout" ? this.checkoutStep()
       : step === "done" ? this.doneStep() : this.datesStep();
     var sheet = el("div", { class: "sheet", role: "dialog", "aria-modal": "true", "aria-labelledby": "rc-title", tabindex: "-1" }, [
       this.head(step),
@@ -494,18 +495,18 @@
   };
 
   Widget.prototype.head = function (step) {
-    var self = this, name = this.cfg.partner.name, steps = null;
-    if (this.inPanel() && step !== "done") {
-      var at = ["dates", "details", "pay"].indexOf(step);
-      steps = el("ol", { class: "steps", "aria-label": "Steps" }, ["Dates", "Details", "Payment"].map(function (t, i) {
+    var self = this, name = this.cfg.partner.name, steps = null, future = this.inPartnerCart();
+    if (future && step !== "done") {
+      var at = ["dates", "bag", "checkout"].indexOf(step);
+      steps = el("ol", { class: "steps", "aria-label": "Steps" }, ["Dates", "Bag", "Checkout"].map(function (t, i) {
         return el("li", { class: i < at ? "past" : null, "aria-current": i === at ? "step" : null, text: t });
       }));
     }
     return el("div", { class: "head" }, [
-      el("div", { class: "kicker", text: name + " × Rêve" }),
+      el("div", { class: "kicker" }, [name + " × Rêve", future ? el("span", { class: "future", text: "Future state" }) : null]),
       el("h2", { id: "rc-title" }, ["Rent it through ", el("em", { text: "RÊVE" })]),
       el("p", { class: "lede", text: "Rêve ships it to you, picks it up and has it cleaned. " +
-        (this.inPanel() ? "You pay here, without leaving " + name + "." : "You check out on rentwithreve.com.") }),
+        (future ? "You pay at " + name + "'s checkout with the rest of your order." : "You check out on rentwithreve.com.") }),
       steps,
       el("button", { class: "x", type: "button", "data-k": "x", "aria-label": "Close", onclick: function () { self.close(); } }, ["×"])
     ]);
@@ -554,10 +555,10 @@
       kv("Arrives by", formatDay(this.start)), kv("Send it back", formatDay(addDays(this.start, per.nights))), this.costRows())) : null;
 
     var name = this.cfg.partner.name, go, fine;
-    if (this.inPanel()) {
-      go = el("button", { class: "go", type: "button", "data-k": "go", disabled: !this.start, onclick: function () { self.go("details"); } },
-        ["Continue", el("span", { "aria-hidden": "true", text: "→" })]);
-      fine = "You pay on this page. " + name + " gets credit for your rental.";
+    if (this.inPartnerCart()) {
+      go = el("button", { class: "go", type: "button", "data-k": "go", disabled: !this.start, onclick: function () { self.addRental(); } },
+        [this.rental ? "Update rental in bag" : "Add rental to bag"]);
+      fine = "Goes into your " + name + " bag. You pay at " + name + "'s checkout with the rest of your order.";
     } else {
       go = el("button", { class: "go", type: "button", "data-k": "go", disabled: !this.start || this.busy, onclick: function () { self.checkout(); } },
         [this.busy ? "Opening Rêve checkout…" : "Continue to checkout", el("span", { "aria-hidden": "true", text: "↗" })]);
@@ -578,7 +579,7 @@
     };
   };
 
-  // ---------------------------------------------------------------- option B prototype steps
+  // ---------------------------------------------------------------- option B3 future-state steps
 
   Widget.prototype.calendar = function (starts, nights) {
     var self = this, ok = {};
