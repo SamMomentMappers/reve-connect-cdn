@@ -1,0 +1,474 @@
+{
+ "schema": "reve-connect/partner-config/1",
+ "built_at": "2026-10-16T17:42:54+00:00",
+ "partner": {
+  "id": "couper",
+  "name": "Couper",
+  "storefront": "https://shopcouper.com",
+  "holdout_share": 0.0,
+  "mount_after": "form.product-single__form",
+  "min_buy_to_rent": 3.0
+ },
+ "reve": {
+  "storefront": "https://rentwithreve.com",
+  "myshopify": "maison-reve-iumhc.myshopify.com",
+  "proxy_path": "/apps/supercycle",
+  "storefront_api_version": "2026-07"
+ },
+ "products": {
+  "begum-skirt-black-white-gold": {
+   "reve_handle": "rosewater-house-begum-skirt",
+   "title": "Begum Skirt",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/rosewater-house-begum-skirt-54076727755116_model_3x4_1K.jpg?v=1780939351",
+   "retail_cents": 85000,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 53751090577772,
+     "size": "S",
+     "partner_variant_ids": [
+      46419810910434
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/118085",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693990424940,
+       "price_cents": 13000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/109149",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693990654316,
+       "price_cents": 17000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/109150",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693990785388,
+       "price_cents": 21500
+      }
+     ]
+    }
+   ]
+  },
+  "begum-top-black-white-gold": {
+   "reve_handle": "rosewater-house-begum-top",
+   "title": "Begum Top",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/rosewater-house-begum-top-54076727787884_ghost_3x4_1K.jpg?v=1780770871",
+   "retail_cents": 30000,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 53751090610540,
+     "size": "S",
+     "partner_variant_ids": [
+      46419810746594
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/118086",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693989343596,
+       "price_cents": 5250
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/109147",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693989376364,
+       "price_cents": 6000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/109148",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693989409132,
+       "price_cents": 7500
+      }
+     ]
+    }
+   ]
+  },
+  "keepsake-ruffle-mini-dress": {
+   "reve_handle": "keepsake-ruffle-mini-dress",
+   "title": "Keepsake Polka Dot Ruffle Mini Dress",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/keepsake-ruffle-mini-dress_model_front_3x4_2K.jpg?v=1790269079",
+   "retail_cents": 49500,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54491976466796,
+     "size": "XS",
+     "partner_variant_ids": [
+      47398394790114
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/263965",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694029648236,
+       "price_cents": 7500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/263966",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694029681004,
+       "price_cents": 10000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/263967",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694029713772,
+       "price_cents": 12500
+      }
+     ]
+    },
+    {
+     "variant_id": 54496147472748,
+     "size": "S",
+     "partner_variant_ids": [
+      47398394822882
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/263965",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694029648236,
+       "price_cents": 7500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/263966",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694029681004,
+       "price_cents": 10000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/263967",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694029713772,
+       "price_cents": 12500
+      }
+     ]
+    },
+    {
+     "variant_id": 54496147505516,
+     "size": "M",
+     "partner_variant_ids": [
+      47398394855650
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/263965",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694029648236,
+       "price_cents": 7500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/263966",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694029681004,
+       "price_cents": 10000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/263967",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694029713772,
+       "price_cents": 12500
+      }
+     ]
+    },
+    {
+     "variant_id": 54496147538284,
+     "size": "L",
+     "partner_variant_ids": [
+      47398394888418
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/263965",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694029648236,
+       "price_cents": 7500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/263966",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694029681004,
+       "price_cents": 10000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/263967",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694029713772,
+       "price_cents": 12500
+      }
+     ]
+    }
+   ]
+  },
+  "lydia-dress-1": {
+   "reve_handle": "lydia-dress-in-rosa-toscana",
+   "title": "Lydia Dress in Rosa Toscana",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/lydia-dress-rosa-toscana_model_front_3x4_2K.jpg?v=1791497159",
+   "retail_cents": 26800,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 67657322660204,
+     "size": "M",
+     "partner_variant_ids": [],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/280479",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 694110486892,
+       "price_cents": 5000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/280480",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 694110519660,
+       "price_cents": 5500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/280481",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 694110552428,
+       "price_cents": 6500
+      }
+     ]
+    }
+   ]
+  },
+  "pippa-maxi-dress": {
+   "reve_handle": "pippa-maxi-dress",
+   "title": "Pippa Maxi Dress",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/14I5HFaBAY8bBmrTKHFV1pwF3HtLcpbuK.jpg?v=1789092165",
+   "retail_cents": 45000,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54344494842220,
+     "size": "XS",
+     "partner_variant_ids": [
+      47696197452002
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/249366",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693896937836,
+       "price_cents": 6500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/249367",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693896970604,
+       "price_cents": 9000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/249368",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693897003372,
+       "price_cents": 11000
+      }
+     ]
+    }
+   ]
+  },
+  "sailor-dress-6a3a96c6015cf050ec4f1566": {
+   "reve_handle": "sailor-dress",
+   "title": "Sailor Dress",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/1yrDtzxCazv3Rcrqi-ZruWMw0g4f4Ngw5.jpg?v=1789092221",
+   "retail_cents": 35500,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54344497103212,
+     "size": "XS",
+     "partner_variant_ids": [
+      48425789685986
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/249342",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693896085868,
+       "price_cents": 5500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/249343",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693896118636,
+       "price_cents": 7000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/249344",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693896151404,
+       "price_cents": 9000
+      }
+     ]
+    }
+   ]
+  },
+  "skinny-strap-driver-maxi-striped": {
+   "reve_handle": "margaret-striped-tie-back-gown",
+   "title": "Margaret Gown",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/1ZMF8vrczv5VkADKBdmsNhH9IjIXbQ8Ov_w1200.jpg?v=1777586219",
+   "retail_cents": 64000,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 53689449152876,
+     "size": "S",
+     "partner_variant_ids": [
+      46473361653986
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/118031",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693969027436,
+       "price_cents": 9500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/104457",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693969060204,
+       "price_cents": 13000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/104458",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693969092972,
+       "price_cents": 16000
+      }
+     ]
+    }
+   ]
+  }
+ }
+}
