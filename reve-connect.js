@@ -385,7 +385,13 @@
     var self = this, p = this.product;
     var placeholder = document.querySelector("[data-reve-connect]");
     var host = placeholder || el("div", { "data-reve-connect-host": "" });
-    if (!placeholder) this.form.insertAdjacentElement("afterend", host);
+    if (!placeholder) {
+      this.form.insertAdjacentElement("afterend", host);
+      // a theme that narrows its buy column on the form itself (Ulla Johnson: max-width 90%) would
+      // leave the button sticking out past Add to cart; the host takes the form's cap
+      var cap = getComputedStyle(this.form).maxWidth;
+      if (cap && cap !== "none") host.style.maxWidth = cap;
+    }
     var shadow = host.attachShadow({ mode: "open" });
     var from = "from " + formatMoney(fromPrice(p));
     var rc = el("div", { class: "rc" }, [

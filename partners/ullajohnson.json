@@ -1,0 +1,71 @@
+{
+ "schema": "reve-connect/partner-config/1",
+ "built_at": "2026-10-16T19:44:46+00:00",
+ "partner": {
+  "id": "ullajohnson",
+  "name": "Ulla Johnson",
+  "storefront": "https://ullajohnson.com",
+  "holdout_share": 0.0,
+  "mount_after": "form.js-form-product",
+  "min_buy_to_rent": 3.0
+ },
+ "reve": {
+  "storefront": "https://rentwithreve.com",
+  "myshopify": "maison-reve-iumhc.myshopify.com",
+  "proxy_path": "/apps/supercycle",
+  "storefront_api_version": "2026-07"
+ },
+ "products": {
+  "tasneem-deep-v-gown-claret": {
+   "reve_handle": "red-pleated-satin-gown-with-plunge-neckline",
+   "title": "Red Pleated Satin Plunge Gown",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/red-pleated-satin-gown-with-plunge-neckline_model_front_3x4_1K.jpg?v=1789159462",
+   "retail_cents": 99000,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 54348266799468,
+     "size": "2",
+     "partner_variant_ids": [
+      42335364907104
+     ],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/249445",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693901099372,
+       "price_cents": 14500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/249446",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693901132140,
+       "price_cents": 19500
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/249447",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693901164908,
+       "price_cents": 24500
+      }
+     ]
+    }
+   ]
+  }
+ }
+}
