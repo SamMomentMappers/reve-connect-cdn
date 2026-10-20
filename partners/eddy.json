@@ -1,6 +1,6 @@
 {
  "schema": "reve-connect/partner-config/1",
- "built_at": "2026-10-16T17:42:43+00:00",
+ "built_at": "2026-10-20T20:13:02+00:00",
  "partner": {
   "id": "eddy",
   "name": "EDDY",
@@ -13,60 +13,10 @@
   "storefront": "https://rentwithreve.com",
   "myshopify": "maison-reve-iumhc.myshopify.com",
   "proxy_path": "/apps/supercycle",
-  "storefront_api_version": "2026-07"
+  "storefront_api_version": "2026-07",
+  "collect": "https://lgxbczjfqvseydvnzltu.supabase.co/functions/v1/collect"
  },
  "products": {
-  "alex-double-breasted-blazer-dress-ivory-green-applique": {
-   "reve_handle": "alex-blazer-dress-in-ivory-wth-green-applique",
-   "title": "Alex Blazer",
-   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/alex-blazer-dress-in-ivory-wth-green-appliqu_model_front_3x4_1K.jpg?v=1785183426",
-   "retail_cents": 54800,
-   "fixed_fees": [
-    {
-     "name": "Cleaning",
-     "price_cents": 0
-    },
-    {
-     "name": "Shipping",
-     "price_cents": 0
-    }
-   ],
-   "units": [
-    {
-     "variant_id": 54097020125548,
-     "size": "L",
-     "partner_variant_ids": [
-      47216802136320
-     ],
-     "periods": [
-      {
-       "global_id": "gid://supercycle/CalendarOption/198679",
-       "label": "4 days",
-       "days": 4,
-       "nights": 3,
-       "selling_plan_id": 693997535596,
-       "price_cents": 8500
-      },
-      {
-       "global_id": "gid://supercycle/CalendarOption/198680",
-       "label": "7 days",
-       "days": 7,
-       "nights": 6,
-       "selling_plan_id": 693997568364,
-       "price_cents": 11000
-      },
-      {
-       "global_id": "gid://supercycle/CalendarOption/198681",
-       "label": "14 days",
-       "days": 14,
-       "nights": 13,
-       "selling_plan_id": 693997633900,
-       "price_cents": 13500
-      }
-     ]
-    }
-   ]
-  },
   "alexa-top-x-charli-evans-harbor-island-waves-ikat": {
    "reve_handle": "alexa-top-tasha-short-set",
    "title": "Alexa & Tasha Set",
@@ -534,57 +484,6 @@
        "nights": 13,
        "selling_plan_id": 693996716396,
        "price_cents": 12500
-      }
-     ]
-    }
-   ]
-  },
-  "lucca-skirt-forever-toile": {
-   "reve_handle": "lucca-skirt-in-forever-toile",
-   "title": "Lucca Skirt",
-   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/lucca-skirt-in-forever-toile_model_front_3x4_1K.jpg?v=1785183465",
-   "retail_cents": 36800,
-   "fixed_fees": [
-    {
-     "name": "Cleaning",
-     "price_cents": 0
-    },
-    {
-     "name": "Shipping",
-     "price_cents": 0
-    }
-   ],
-   "units": [
-    {
-     "variant_id": 54097020911980,
-     "size": "S",
-     "partner_variant_ids": [
-      48671822676224
-     ],
-     "periods": [
-      {
-       "global_id": "gid://supercycle/CalendarOption/198010",
-       "label": "4 days",
-       "days": 4,
-       "nights": 3,
-       "selling_plan_id": 694021456236,
-       "price_cents": 6000
-      },
-      {
-       "global_id": "gid://supercycle/CalendarOption/198011",
-       "label": "7 days",
-       "days": 7,
-       "nights": 6,
-       "selling_plan_id": 694021489004,
-       "price_cents": 7500
-      },
-      {
-       "global_id": "gid://supercycle/CalendarOption/198012",
-       "label": "14 days",
-       "days": 14,
-       "nights": 13,
-       "selling_plan_id": 694021521772,
-       "price_cents": 9000
       }
      ]
     }

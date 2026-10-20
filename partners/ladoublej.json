@@ -1,0 +1,72 @@
+{
+ "schema": "reve-connect/partner-config/1",
+ "built_at": "2026-10-20T20:11:30+00:00",
+ "partner": {
+  "id": "ladoublej",
+  "name": "La DoubleJ",
+  "storefront": "https://www.ladoublej.com",
+  "holdout_share": 0.0,
+  "platform": "sfcc",
+  "mount_after": ".add-to-cart__button-wrap, .product_size_selector",
+  "cart_button": "button.addToCart, button.product_size_selector",
+  "min_buy_to_rent": 3.0
+ },
+ "reve": {
+  "storefront": "https://rentwithreve.com",
+  "myshopify": "maison-reve-iumhc.myshopify.com",
+  "proxy_path": "/apps/supercycle",
+  "storefront_api_version": "2026-07",
+  "collect": "https://lgxbczjfqvseydvnzltu.supabase.co/functions/v1/collect"
+ },
+ "products": {
+  "dre0964sil009btu01gr03": {
+   "reve_handle": "scarf-silk-dress",
+   "title": "Scarf Midi Dress",
+   "image": "https://cdn.shopify.com/s/files/1/0954/9247/3196/files/jfklajfl_aksd.jpg?v=1778117533",
+   "retail_cents": 139000,
+   "fixed_fees": [
+    {
+     "name": "Cleaning",
+     "price_cents": 0
+    },
+    {
+     "name": "Shipping",
+     "price_cents": 0
+    }
+   ],
+   "units": [
+    {
+     "variant_id": 53729951973740,
+     "size": "XS",
+     "partner_variant_ids": [],
+     "periods": [
+      {
+       "global_id": "gid://supercycle/CalendarOption/118092",
+       "label": "4 days",
+       "days": 4,
+       "nights": 3,
+       "selling_plan_id": 693987377516,
+       "price_cents": 21000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/106070",
+       "label": "7 days",
+       "days": 7,
+       "nights": 6,
+       "selling_plan_id": 693987541356,
+       "price_cents": 28000
+      },
+      {
+       "global_id": "gid://supercycle/CalendarOption/106071",
+       "label": "14 days",
+       "days": 14,
+       "nights": 13,
+       "selling_plan_id": 693987770732,
+       "price_cents": 30000
+      }
+     ]
+    }
+   ]
+  }
+ }
+}
